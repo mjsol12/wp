@@ -1,6 +1,12 @@
 <?php
 /*
- * Plugin Name: jones Testing
+ * Plugin Name: My Custom Plugin
+ * Plugin URI:  https://github.com/mjsol12/wp
+ * Description: A custom WordPress plugin for demonstration.
+ * Version:     1.0
+ * Author:      Mark Jones Solano
+ * Author URI:  https://mjsolano.com
+ *  License:     GPL2
  */
 
  /**
