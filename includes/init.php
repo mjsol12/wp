@@ -73,12 +73,23 @@ function my_custom_block_assets() {
         array(),
         filemtime(MCP_PATH.'block/styles.css')
     );
-    // Front end styles
-    wp_enqueue_style(
-        'my-custom-block-frontend-css',
-        plugin_dir_url(__FILE__) . 'block/style.css',
-        array(),
-        filemtime(plugin_dir_path(__FILE__) . 'block/style.css')
-    );
 }
 add_action('enqueue_block_assets', 'my_custom_block_assets');
+
+
+function add_featured_image_to_rest() {
+    // Add featured image data to the REST API for posts
+    register_rest_field(
+        array('post', 'mcp'), // Post types
+        'featured_media_url', // The key that will be added to the REST response
+        array(
+            'get_callback'    => function($post_arr) {
+                $featured_img_url = get_the_post_thumbnail_url($post_arr['id'], 'full');
+                return $featured_img_url ?: ''; // Return empty string if no featured image
+            },
+            'update_callback' => null,
+            'schema'          => null,
+        )
+    );
+}
+add_action('rest_api_init', 'add_featured_image_to_rest');

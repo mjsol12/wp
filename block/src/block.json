@@ -1,0 +1,14 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "block-development/mcp-block-render-23b435d",
+  "version": "0.1.0",
+  "title": "Block MCP",
+  "category": "common",
+  "icon": "welcome-write-blog",
+  "description": "Example block scaffolded with Create Block tool.",
+  "example": {},
+  "keywords": ["23b435d"],
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php"
+}
