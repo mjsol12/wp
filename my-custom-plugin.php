@@ -13,7 +13,7 @@
  * Register the "book" custom post type
  */
 function pluginprefix_setup_post_type() {
-	register_post_type( 'mark', ['public' => true ] ); 
+	register_post_type( 'book', ['public' => true ] ); 
 } 
 add_action( 'init', 'pluginprefix_setup_post_type' );
 
@@ -33,7 +33,7 @@ register_activation_hook( __FILE__, 'pluginprefix_activate' );
  */
 function pluginprefix_deactivate() {
 	// Unregister the post type, so the rules are no longer in memory.
-	unregister_post_type( 'mark' );
+	unregister_post_type( 'book' );
 	// Clear the permalinks to remove our post type's rules from the database.
 	flush_rewrite_rules();
 }
