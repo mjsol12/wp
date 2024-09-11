@@ -32,6 +32,15 @@
   margin: 10px;
   text-transform: uppercase;
   font-weight: bold;
+  display: flex;
+  align-items: baseline; /* Align the icon and text vertically */
+}
+
+.mcp-category .dashicons,
+.mcp-category .fa {
+  margin-right: 5px; /* Add space between the icon and the text */
+  font-size: 12px; /* Adjust the icon size */
+  color: #999; /* Match the text color */
 }
 
 .mcp-block-card .mcp-title {

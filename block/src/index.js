@@ -16,6 +16,10 @@ registerBlockType(metadata.name, {
       type: "string",
       default: "wide", // Optional: set default alignment to 'wide'
     },
+    fullHeight: {
+      type: "boolean",
+      default: true, // Default is not full height
+    },
   },
   edit: Edit,
   save() {

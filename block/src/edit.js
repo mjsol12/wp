@@ -31,7 +31,9 @@ export default function Edit() {
           ) : (
             <img src="https://via.placeholder.com/300x200" alt="Placeholder" />
           )}
-          <div className="mcp-category">Object</div>
+          <div className="mcp-category">
+            <span className="dashicons dashicons-format-image" /> Object
+          </div>
           <div className="mcp-title">
             <a href={post.link} target="_blank" rel="noopener noreferrer">
               {post.title.rendered}
