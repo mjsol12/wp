@@ -12,9 +12,38 @@
  /**
  * Register the "book" custom post type
  */
+
+ 
+// Function to register the custom post type
 function pluginprefix_setup_post_type() {
-	register_post_type( 'book', ['public' => true ] ); 
-} 
+    $labels = array(
+        'name'               => _x('MCP', 'post type general name'),
+        'singular_name'      => _x('MCP', 'post type singular name'),
+        'menu_name'          => __('MCP'),
+        'name_admin_bar'     => __('MCP'),
+        'add_new'            => __('Add New'),
+        'add_new_item'       => __('Add New MCP'),
+        'edit_item'          => __('Edit MCP'),
+        'new_item'           => __('New MCP'),
+        'view_item'          => __('View MCP'),
+        'all_items'          => __('All MCP'),
+        'search_items'       => __('Search MCP'),
+        'not_found'          => __('No MCPs found'),
+        'not_found_in_trash' => __('No MCPs found in Trash')
+    );
+    
+    $args = array(
+        'labels'             => $labels,
+        'public'             => true,
+        'has_archive'        => true,
+        'supports'           => array('title', 'editor', 'thumbnail'),
+        'show_in_menu'       => true,
+        'menu_position'      => 5, // Position of the MCP tab in the menu
+        'menu_icon'          => 'dashicons-admin-post', // You can change the icon if needed
+    );
+
+    register_post_type('mcp', $args);
+}
 add_action( 'init', 'pluginprefix_setup_post_type' );
 
 /**
