@@ -73,5 +73,12 @@ function my_custom_block_assets() {
         array(),
         filemtime(MCP_PATH.'block/styles.css')
     );
+    // Front end styles
+    wp_enqueue_style(
+        'my-custom-block-frontend-css',
+        plugin_dir_url(__FILE__) . 'block/style.css',
+        array(),
+        filemtime(plugin_dir_path(__FILE__) . 'block/style.css')
+    );
 }
-add_action('enqueue_block_editor_assets', 'my_custom_block_assets');
+add_action('enqueue_block_assets', 'my_custom_block_assets');
