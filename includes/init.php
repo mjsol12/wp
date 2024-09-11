@@ -52,8 +52,26 @@ register_activation_hook( __FILE__, 'pluginprefix_activate' );
  */
 function pluginprefix_deactivate() {
 	// Unregister the post type, so the rules are no longer in memory.
-	unregister_post_type( 'book' );
+	unregister_post_type( 'mcp' );
 	// Clear the permalinks to remove our post type's rules from the database.
 	flush_rewrite_rules();
 }
 register_deactivation_hook( __FILE__, 'pluginprefix_deactivate' );
+
+
+// Enqueue the block editor script for Gutenberg
+function my_custom_block_assets() {
+    wp_enqueue_script(
+        'my-custom-block',
+        MCP_URL.'block/build/index.js', // Path to the block build file
+        array('wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-data'),
+        filemtime(MCP_PATH.'block/build/index.js')
+    );
+    wp_enqueue_style(
+        'my-custom-block-styles',
+        MCP_URL.'block/styles.css',
+        array(),
+        filemtime(MCP_PATH.'block/styles.css')
+    );
+}
+add_action('enqueue_block_editor_assets', 'my_custom_block_assets');

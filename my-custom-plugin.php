@@ -10,6 +10,7 @@
  */
 
 //defining the url,path and slug for the plugin
+define( 'MCP_URL', plugin_dir_url(__FILE__) );
 define( 'MCP_PATH', plugin_dir_path(__FILE__) );
 
 include_once(MCP_PATH.'includes/init.php');
