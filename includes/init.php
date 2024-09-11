@@ -25,10 +25,9 @@ function pluginprefix_setup_post_type() {
         'show_ui'            => true, // ensures that the post type is displayed in the WordPress admin dashboard.
         'show_in_menu'       => true, // ensures that the custom post type will appear in the admin menu.
         'show_in_admin_bar'  => true, // Makes the custom post type available in the top admin bar when adding new items.
-        'show_in_menu'       => true,
         'menu_position'      => 5, // Position of the MCP tab in the menu
+		'menu_icon'          => 'dashicons-sticky', 
         'supports'           => array('title', 'editor', 'thumbnail', 'excerpt', 'comments', 'revisions'), // Enable the default WordPress editor features
-        'menu_icon'          => 'dashicons-admin-post', // You can change the icon if needed
 		'show_in_rest'       => true,  // Enable REST API for Gutenberg editor
         'hierarchical'       => false, // Set to false if it's like "posts", true if it's like "pages"
     );
