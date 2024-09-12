@@ -1,3 +1,4 @@
+/* Handles alignment styles generically */
 .mcp-block {
   display: grid;
   grid-template-columns: repeat(
@@ -5,8 +6,16 @@
     1fr
   ); /* 3 columns, each taking equal width */
   gap: 30px; /* 30px gap between the cards */
-  max-height: 100vh; /* Adjust height as needed */
   padding: 20px;
+}
+
+.mcp-block.alignfull {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
+
+.mcp-block.alignwide {
+  max-width: 1200px; /* Example width for 'wide' alignment */
 }
 
 .mcp-block-card {

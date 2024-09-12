@@ -58,25 +58,6 @@ function pluginprefix_deactivate() {
 }
 register_deactivation_hook( __FILE__, 'pluginprefix_deactivate' );
 
-
-// Enqueue the block editor script for Gutenberg
-function my_custom_block_assets() {
-    wp_enqueue_script(
-        'my-custom-block',
-        MCP_URL.'block/build/index.js', // Path to the block build file
-        array('wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-data'),
-        filemtime(MCP_PATH.'block/build/index.js')
-    );
-    wp_enqueue_style(
-        'my-custom-block-styles',
-        MCP_URL.'block/styles.css',
-        array(),
-        filemtime(MCP_PATH.'block/styles.css')
-    );
-}
-add_action('enqueue_block_assets', 'my_custom_block_assets');
-
-
 function add_featured_image_to_rest() {
     // Add featured image data to the REST API for posts
     register_rest_field(
