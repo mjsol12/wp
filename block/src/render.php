@@ -1,7 +1,6 @@
 <?php
 // Use the $attributes (array), $content (string), and $block (WP_Block) provided by WordPress.
-
-$fullHeightClass = !empty($attributes['fullHeight']) && $attributes['fullHeight'] ? 'full-height' : '';
+$alignClass = !empty($attributes['align']) ? 'align' . $attributes['align'] : '';
 
 // Fetch MCP posts (custom post type)
 $args = array(
@@ -10,14 +9,14 @@ $args = array(
 );
 
 $posts = get_posts($args);
-
 // If there are no posts, return a message
 if (empty($posts)) {
     echo '<div class="mcp-block">No MCP posts found.</div>';
 }
 
 // Start generating the HTML output
-$output = '<div class="mcp-block ' . esc_attr($fullHeightClass) . '">';
+$output = '<div class="' . esc_attr($alignClass) . '">';
+    $output .= '<div class="mcp-block">';
 
 foreach ($posts as $post) {
     $title = get_the_title($post);
@@ -28,12 +27,13 @@ foreach ($posts as $post) {
     // Generate the HTML for each post card
     $output .= '<div class="mcp-block-card">';
     $output .= '<img src="' . esc_url($featured_image) . '" alt="' . esc_attr($title) . '" />';
-    $output .= '<div class="mcp-category"><span class="dashicons dashicons-admin-media"></span> Object</div>';
+    $output .= '<div class="mcp-category"><span className="dashicons dashicons-format-image"></span> Object</div>';
     $output .= '<div class="mcp-title"><a href="' . esc_url($link) . '">' . esc_html($title) . '</a></div>';
     $output .= '<div class="mcp-description">' . esc_html($excerpt) . '</div>';
     $output .= '</div>';
 }
 
+    $output .= '</div>';
 $output .= '</div>';
 
 echo $output;
