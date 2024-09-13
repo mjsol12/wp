@@ -13,7 +13,7 @@ $posts = get_posts($args);
 
 // If there are no posts, return a message
 if (empty($posts)) {
-    return '<div class="mcp-block">No MCP posts found.</div>';
+    echo '<div class="mcp-block">No MCP posts found.</div>';
 }
 
 // Start generating the HTML output
@@ -36,4 +36,4 @@ foreach ($posts as $post) {
 
 $output .= '</div>';
 
-return $output;
+echo $output;
