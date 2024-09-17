@@ -2,7 +2,6 @@
   "name": "mcp-block-render-23b435d",
   "version": "1.0.0",
   "description": "Example block scaffolded with Create Block tool.",
-  "main": "index.js",
   "scripts": {
     "build": "wp-scripts build",
     "start": "wp-scripts start",

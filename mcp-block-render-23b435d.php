@@ -1,5 +1,19 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+/*
+ * Plugin Name: My Custom Plugin
+ * Plugin URI:  https://github.com/mjsol12/wp
+ * Description: A custom WordPress plugin for demonstration.
+ * Version:     1.0
+ * Author:      Mark Jones Solano
+ * Author URI:  https://mjsolano.com
+ *  License:     GPL2
+ */
+
+ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+ 
+//defining the url,path and slug for the plugin
+define( 'MCP_URL', plugin_dir_url(__FILE__) );
+define( 'MCP_PATH', plugin_dir_path(__FILE__) );
 
 // Function to register the custom post type
 function pluginprefix_setup_post_type() {
@@ -74,3 +88,10 @@ function add_featured_image_to_rest() {
     );
 }
 add_action('rest_api_init', 'add_featured_image_to_rest');
+
+function my_mcp_index_register_block() {
+    register_block_type(__DIR__ . '/build/mcp-card');
+    register_block_type(__DIR__ . '/build/mcp-list');
+}
+
+add_action('init', 'my_mcp_index_register_block');
