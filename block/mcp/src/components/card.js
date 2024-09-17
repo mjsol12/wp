@@ -2,7 +2,7 @@ import React from "react";
 import { Dashicon } from "@wordpress/components";
 
 export default function MCPCard(props) {
-  const { image, link, title } = props;
+  const { image, link, title, description } = props;
   return (
     <div className="mcp-block-card">
       {image ? (
@@ -22,6 +22,15 @@ export default function MCPCard(props) {
           {title}
         </a>
       </div>
+      {description && (
+        <div className="mcp-description">
+          <p
+            dangerouslySetInnerHTML={{
+              __html: description,
+            }}
+          />
+        </div>
+      )}
     </div>
   );
 }
