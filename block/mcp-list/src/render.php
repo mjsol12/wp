@@ -16,7 +16,7 @@ if (empty($posts)) {
 
 // Start generating the HTML output
 $output = '<div class="' . esc_attr($alignClass) . '">';
-    $output .= '<div class="mcp-block">';
+$output .= '<div class="mcp-block">';
 
 foreach ($posts as $post) {
     $title = get_the_title($post);
@@ -33,7 +33,7 @@ foreach ($posts as $post) {
     $output .= '</div>';
 }
 
-    $output .= '</div>';
+$output .= '</div>';
 $output .= '</div>';
 
 echo $output;
