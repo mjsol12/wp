@@ -1,4 +1,4 @@
-import "./editor.scss";
+import "../styles/editor.scss";
 import MCPCard from "../components/card";
 
 export default function Save(props) {

@@ -7,7 +7,7 @@ import { useSelect } from "@wordpress/data";
  *
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
-import "./editor.scss";
+import "../styles/editor.scss";
 import MCPCard from "../components/card";
 
 export default function Edit({ attributes }) {

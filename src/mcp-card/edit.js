@@ -5,7 +5,7 @@ import { Button, Modal, TextControl, Spinner } from "@wordpress/components";
 
 import MCPCard from "../components/card";
 
-import "./editor.scss";
+import "../styles/editor.scss";
 
 export default function Edit(props) {
   const { attributes, setAttributes } = props;
