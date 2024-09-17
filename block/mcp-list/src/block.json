@@ -3,7 +3,7 @@
   "apiVersion": 3,
   "name": "block-development/mcp-block-render-23b435d",
   "version": "0.1.0",
-  "title": "Block MCP",
+  "title": "MCP LIST",
   "category": "common",
   "icon": "welcome-write-blog",
   "description": "The block will display all listed MCP posts",
