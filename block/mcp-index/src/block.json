@@ -6,7 +6,7 @@
   "title": "Index MCP",
   "category": "widgets",
   "icon": "welcome-write-blog",
-  "description": "Example block scaffolded with Create Block tool.",
+  "description": "This will create a one reference to MCP link",
   "example": {},
   "supports": {
     "align": ["wide", "full", "center", "left", "right"],

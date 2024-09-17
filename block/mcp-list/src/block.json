@@ -1,32 +1,32 @@
 {
-	"$schema": "https://schemas.wp.org/trunk/block.json",
-	"apiVersion": 3,
-	"name": "block-development/mcp-block-render-23b435d",
-	"version": "0.1.0",
-	"title": "Block MCP",
-	"category": "common",
-	"icon": "welcome-write-blog",
-	"description": "Example block scaffolded with Create Block tool.",
-	"example": {},
-	"supports": {
-		"align": [ "wide", "full", "center", "left", "right" ],
-		"position": {
-			"sticky": true
-		}
-	},
-	"attributes": {
-		"align": {
-			"type": "string",
-			"default": "wide"
-		},
-		"fullHeight": {
-			"type": "boolean",
-			"default": true
-		}
-	},
-	"keywords": [ "23b435d" ],
-	"editorScript": "file:./index.js",
-	"editorStyle": "file:./index.css",
-	"style": "file:./index.css",
-	"render": "file:./render.php"
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "block-development/mcp-block-render-23b435d",
+  "version": "0.1.0",
+  "title": "Block MCP",
+  "category": "common",
+  "icon": "welcome-write-blog",
+  "description": "The block will display all listed MCP posts",
+  "example": {},
+  "supports": {
+    "align": ["wide", "full", "center", "left", "right"],
+    "position": {
+      "sticky": true
+    }
+  },
+  "attributes": {
+    "align": {
+      "type": "string",
+      "default": "wide"
+    },
+    "fullHeight": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "keywords": ["23b435d"],
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./index.css",
+  "render": "file:./render.php"
 }
