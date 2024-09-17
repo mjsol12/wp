@@ -1,32 +1,26 @@
 import React from "react";
+import { Dashicon } from "@wordpress/components";
 
 export default function MCPCard(props) {
-  const { image, link, description, title } = props;
+  const { image, link, title } = props;
   return (
     <div className="mcp-block-card">
       {image ? (
-        <img src={image} alt={title} />
+        <img src={image} alt={image}></img>
       ) : (
-        <img src="https://via.placeholder.com/300x200" alt="Placeholder" />
+        <img src="https://via.placeholder.com/300x200" alt="Placeholder"></img>
       )}
       <div className="mcp-category">
-        <span className="dashicons dashicons-format-image"></span> Object
+        <Dashicon
+          icon="format-image"
+          className="dashicons dashicons-format-image"
+        />
+        Object
       </div>
       <div className="mcp-title">
         <a href={link} target="_blank" rel="noopener noreferrer">
           {title}
         </a>
-      </div>
-      <div className="mcp-description">
-        {description ? (
-          <p
-            dangerouslySetInnerHTML={{
-              __html: description,
-            }}
-          />
-        ) : (
-          <p>No description available.</p>
-        )}
       </div>
     </div>
   );

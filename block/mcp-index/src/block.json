@@ -15,15 +15,25 @@
     }
   },
   "attributes": {
-    "postId": {
+    "id": {
       "type": "number",
       "default": 1
     },
-    "postTitle": {
+    "title": {
+      "type": "string",
+      "default": ""
+    },
+    "image": {
+      "type": "string",
+      "default": ""
+    },
+    "link": {
       "type": "string",
       "default": ""
     }
   },
   "keywords": ["875fds854"],
-  "editorScript": "file:./index.js"
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./index.css"
 }
