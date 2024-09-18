@@ -1,9 +1,10 @@
 import { useBlockProps } from "@wordpress/block-editor";
 import apiFetch from "@wordpress/api-fetch";
 import { useState, useEffect } from "react";
-import { Button, Modal, TextControl, Spinner } from "@wordpress/components";
+import { Button } from "@wordpress/components";
 
 import MCPCard from "../components/card";
+import MCPModal from "../components/modal";
 
 import "../styles/editor.scss";
 
@@ -13,14 +14,14 @@ export default function Edit(props) {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [search, setSearchTerm] = useState("");
-  const [posts, setPosts] = useState([]);
+  const [mcp, setMcp] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const fetchPosts = (searchTerm) => {
     setLoading(true);
     apiFetch({ path: `/wp/v2/mcp?search=${searchTerm}` })
       .then((data) => {
-        setPosts(data);
+        setMcp(data);
         setLoading(false);
       })
       .catch(() => {
@@ -48,40 +49,14 @@ export default function Edit(props) {
   return (
     <div {...blockProps}>
       {isModalOpen && (
-        <Modal
-          title="Select a MCP"
-          onRequestClose={closeModal}
-          shouldCloseOnClickOutside={true}
-        >
-          <TextControl
-            label="Search"
-            value={attributes.searchTerm}
-            onChange={handleSearchChange}
-          />
-          {loading ? (
-            <Spinner />
-          ) : (
-            <ul>
-              {posts.map((post) => (
-                <li key={post.id}>
-                  <Button
-                    onClick={() => {
-                      setAttributes({
-                        id: post.id,
-                        title: post.title.rendered,
-                        image: post.featured_media_url,
-                        link: post.link,
-                      });
-                      closeModal();
-                    }}
-                  >
-                    {post.title.rendered}
-                  </Button>
-                </li>
-              ))}
-            </ul>
-          )}
-        </Modal>
+        <MCPModal
+          attributes={attributes}
+          closeModal={closeModal}
+          mcp={mcp}
+          loading={loading}
+          setAttributes={setAttributes}
+          handleSearchChange={handleSearchChange}
+        />
       )}
       <div style={{ position: "absolute" }}>
         <Button variant="primary" onClick={openModal}>
