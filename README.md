@@ -32,10 +32,10 @@
 
 ## Development Mode
 
-1. During development, use the command "npm run start" to enable real-time output and preview your changes as you code.
-2. Once development is complete, run "npm run build" to generate the production-ready build files.
+1. During development, use the command `npm run start` to enable real-time output and preview your changes as you code.
+2. Once development is complete, run `npm run build` to generate the production-ready build files.
 
 ### Zip
 
-1. In the same project directory, execute the command npm run plugin-zip. Ensure that the build is prepared for production by running npm run build first.
+1. In the same project directory, execute the command `npm run plugin-zip`. Ensure that the build is prepared for production by running `npm run build` first.
 2. The resulting zip file will contain the same content as the initial .php file, ready for deployment.
