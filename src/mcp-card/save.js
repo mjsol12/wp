@@ -3,11 +3,9 @@ import MCPCard from "../components/card";
 
 export default function Save(props) {
   const { attributes } = props;
-  console.log(attributes);
-  const alignClass = attributes["align"] ? attributes["align"] : "";
 
   return (
-    <div className={alignClass}>
+    <div className={attributes["align"] ? attributes["align"] : ""}>
       <MCPCard
         image={attributes.image}
         title={attributes.title}
