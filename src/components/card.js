@@ -4,7 +4,11 @@ import { Dashicon } from "@wordpress/components";
 export default function MCPCard(props) {
   const { image, link, title, description } = props;
   return (
-    <div className="mcp-block-card">
+    <div
+      className="mcp-block-card"
+      tabindex="0"
+      aria-label={`Card for ${title}`}
+    >
       {image ? (
         <img src={image} alt={image}></img>
       ) : (

@@ -16,7 +16,7 @@ if (empty($posts)) {
 
 // Start generating the HTML output
 $output = '<div class="' . esc_attr($alignClass) . '">';
-$output .= '<div class="mcp-block">';
+$output .= '<section class="mcp-block" role="region" aria-label="MCP Block Content">';
 
 foreach ($posts as $post) {
     $title = get_the_title($post);
@@ -25,15 +25,15 @@ foreach ($posts as $post) {
     $featured_image = get_the_post_thumbnail_url($post, 'full') ?: 'https://via.placeholder.com/300x200';
 
     // Generate the HTML for each post card
-    $output .= '<div class="mcp-block-card">';
+    $output .= '<div class="mcp-block-card"  tabindex="0" aria-label="Card for ' . esc_attr($title) . '">';
     $output .= '<img src="' . esc_url($featured_image) . '" alt="' . esc_attr($title) . '" />';
     $output .= '<div class="mcp-category"><span className="dashicons dashicons-format-image"></span> Object</div>';
-    $output .= '<div class="mcp-title"><a href="' . esc_url($link) . '">' . esc_html($title) . '</a></div>';
+    $output .= '<div class="mcp-title"><a href="' . esc_url($link) . '" aria-label="Navigate to ' . esc_html($title) . '">' . esc_html($title) . '</a></div>';
     $output .= '<div class="mcp-description">' . esc_html($excerpt) . '</div>';
     $output .= '</div>';
 }
 
-$output .= '</div>';
+$output .= '</section>';
 $output .= '</div>';
 
 echo $output;

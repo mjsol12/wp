@@ -8,7 +8,7 @@
 
 ### Description
 
-**My Custom Plugin** adds a custom post plugin in your site. Perfect simulation for displaying and listing a object cards.
+**My Custom Plugin** adds a custom post plugin to your site, a perfect simulation for displaying and listing custom postcards.
 
 ---
 
