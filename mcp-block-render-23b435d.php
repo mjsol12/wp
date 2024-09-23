@@ -90,6 +90,20 @@ function add_featured_image_to_rest() {
 add_action('rest_api_init', 'add_featured_image_to_rest');
 
 // list of plugin build should be registered
+
+function my_mcp_index_register_block() {
+    $custom_blocks = array (
+		'mcp-card',
+		'mcp-list',
+	);
+
+	foreach ( $custom_blocks as $block ) {
+		register_block_type( __DIR__ . '/build/blocks/' . $block );
+	}
+}
+
+add_action('init', 'my_mcp_index_register_block');
+
 function multiblock_enqueue_block_assets() {
 	wp_enqueue_script(
 		'multi-block-editor-js',
@@ -107,3 +121,19 @@ function multiblock_enqueue_block_assets() {
 	);
 }
 add_action( 'enqueue_block_editor_assets', 'multiblock_enqueue_block_assets' );
+
+function multiblock_enqueue_frontend_assets() {
+	wp_enqueue_style(
+		'multi-block-frontend-css',
+		plugin_dir_url( __FILE__ ) . 'build/style-multi-block-editor.css',
+	);
+
+	wp_enqueue_script(
+		'multi-block-frontend-js',
+		plugin_dir_url( __FILE__ ) . 'build/multi-block-frontend.js',
+		array(),
+		null,
+		true
+	);
+}
+add_action( 'wp_enqueue_scripts', 'multiblock_enqueue_frontend_assets' );

@@ -1,5 +1,4 @@
-import "../styles/editor.scss";
-import MCPCard from "../components/card";
+import MCPCard from "../../components/card";
 
 export default function Save(props) {
   const { attributes } = props;

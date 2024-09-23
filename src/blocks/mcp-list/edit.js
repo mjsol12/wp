@@ -1,14 +1,15 @@
 import { useBlockProps } from "@wordpress/block-editor";
 import { useSelect } from "@wordpress/data";
 
+import "./editor.scss";
+
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
  * Those files can contain any CSS code that gets applied to the editor.
  *
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
-import "../styles/editor.scss";
-import MCPCard from "../components/card";
+import MCPCard from "../../components/card";
 
 export default function Edit({ attributes }) {
   const { align } = attributes;

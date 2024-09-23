@@ -1,3 +1,1 @@
-// script for the frontend assets
-
-console.log("frontend test");
+// script for the frontend assetss

@@ -3,10 +3,10 @@ import apiFetch from "@wordpress/api-fetch";
 import { useState, useEffect } from "react";
 import { Button } from "@wordpress/components";
 
-import MCPCard from "../components/card";
-import MCPModal from "../components/modal";
+import "./editor.scss";
 
-import "../styles/editor.scss";
+import MCPCard from "../../components/card";
+import MCPModal from "../../components/modal";
 
 export default function Edit(props) {
   const { attributes, setAttributes } = props;
