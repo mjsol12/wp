@@ -90,15 +90,20 @@ function add_featured_image_to_rest() {
 add_action('rest_api_init', 'add_featured_image_to_rest');
 
 // list of plugin build should be registered
-function my_mcp_index_register_block() {
-    $custom_blocks = array (
-		'mcp-card',
-		'mcp-list',
+function multiblock_enqueue_block_assets() {
+	wp_enqueue_script(
+		'multi-block-editor-js',
+		plugin_dir_url( __FILE__ ) . 'build/multi-block-editor.js',
+		array('wp-blocks', 'wp-components', 'wp-data', 'wp-dom-ready', 'wp-edit-post', 'wp-element', 'wp-i18n', 'wp-plugins'),
+		null,
+		false
 	);
-
-	foreach ( $custom_blocks as $block ) {
-		register_block_type( __DIR__ . '/build/blocks/' . $block );
-	}
+	
+	wp_enqueue_style(
+		'multi-block-editor-css',
+		plugin_dir_url( __FILE__ ) . 'build/multi-block-editor.css',
+		array(),
+		null
+	);
 }
-
-add_action('init', 'my_mcp_index_register_block');
+add_action( 'enqueue_block_editor_assets', 'multiblock_enqueue_block_assets' );
