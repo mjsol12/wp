@@ -94,15 +94,11 @@ function my_mcp_index_register_block() {
     $custom_blocks = array (
 		'mcp-card',
 		'mcp-list',
-		'block-three',
-		'block-four',
 	);
 
 	foreach ( $custom_blocks as $block ) {
 		register_block_type( __DIR__ . '/build/blocks/' . $block );
 	}
-    register_block_type(__DIR__ . '/build/mcp-card');
-    register_block_type(__DIR__ . '/build/mcp-list');
 }
 
 add_action('init', 'my_mcp_index_register_block');
