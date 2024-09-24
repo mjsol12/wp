@@ -95,6 +95,7 @@ function my_mcp_index_register_block() {
     $custom_blocks = array (
 		'mcp-card',
 		'mcp-list',
+		'mcp-toggle',
 	);
 
 	foreach ( $custom_blocks as $block ) {

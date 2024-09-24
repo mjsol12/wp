@@ -1,0 +1,17 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "block-development/mcp-toggle",
+  "version": "0.1.0",
+  "title": "MCP TOGGLE",
+  "category": "widgets",
+  "icon": "media-interactive",
+  "description": "An interactive block with the Interactivity API",
+  "example": {},
+  "supports": {
+    "interactivity": true
+  },
+  "textdomain": "mcp-toggle",
+  "render": "file:./render.php",
+  "viewScriptModule": "file:./view.js"
+}
