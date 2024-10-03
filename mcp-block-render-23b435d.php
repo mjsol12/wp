@@ -21,6 +21,10 @@ class McpddPlugin
 		add_action( 'init', array( $this, 'custom_post_type' ) );
 	}
 
+	function register() {
+		add_action('admin_enqueue_scripts', array($this, 'enqueue'));
+	}
+
 	function activate() {
 		// Trigger our function that registers the custom post type plugin.
 		$this->custom_post_type(); 
@@ -68,10 +72,17 @@ class McpddPlugin
 
 		register_post_type('mcp', $args );
 	}
+
+	function enqueue () {
+		// enqueue all our scripts
+		wp_enqueue_style('mystyles', plugins_url('/assets/styles.css', __FILE__ ));
+		wp_enqueue_script('myPluginScript', plugins_url('/assets/myscript.js', __FILE__ ));
+	}
 }
 
 if(class_exists( 'McpddPlugin' )) {
 	$mcpaddPlugin = new McpddPlugin();
+	$mcpaddPlugin->register();
 }
 
 register_activation_hook( __FILE__, array($mcpaddPlugin, 'activate'));
