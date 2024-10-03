@@ -35,11 +35,6 @@ class McpddPlugin
 		flush_rewrite_rules();
 	}
 
-	function uninstall() {
-		// delete MCP
-		// delete all the plugin data from the DB
-	}
-
 	// Function to register the custom post type
 	function custom_post_type() {
 		// create a custom post type 
