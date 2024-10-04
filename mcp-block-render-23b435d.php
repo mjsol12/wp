@@ -17,26 +17,27 @@ define( 'MCP_PATH', plugin_dir_path(__FILE__) );
 
 class McpddPlugin 
 {
-	function __construct() {
-		add_action( 'init', array( $this, 'custom_post_type' ) );
+	function __construct () {
+		$this->create_post_type();
 	}
 
 	function register() {
 		add_action('admin_enqueue_scripts', array($this, 'enqueue'));
+
+		add_action('admin_menu', array($this, 'add_admin_pages'));
 	}
 
-	function activate() {
-		// Trigger our function that registers the custom post type plugin.
-		$this->custom_post_type(); 
-		// Clear the permalinks after the post type has been registered.
-		flush_rewrite_rules(); 
+	function add_admin_pages(){
+		add_menu_page( 'MCP Title', 'MCP', 'manage_options', 'mcp_plugin', array( $this, 'admin_index'), 'dashicons-sticky', 5 );
 	}
 
-	function deactivate() {
-		// Unregister the post type, so the rules are no longer in memory.
-		// unregister_post_type( 'mcp' );
-		// Clear the permalinks to remove our post type's rules from the database.
-		flush_rewrite_rules();
+	function admin_index(){
+		//require template
+
+	}
+
+	protected function create_post_type() {
+		add_action( 'init', array( $this, 'custom_post_type' ) );
 	}
 
 	// Function to register the custom post type
@@ -85,9 +86,11 @@ if(class_exists( 'McpddPlugin' )) {
 	$mcpaddPlugin->register();
 }
 
-register_activation_hook( __FILE__, array($mcpaddPlugin, 'activate'));
+require_once plugin_dir_path( __FILE__ ) . 'inc/mcp-plugin-activate.php';
+register_activation_hook( __FILE__, array('McpPluginActivate', 'activate'));
 
-register_deactivation_hook( __FILE__, array($mcpaddPlugin, 'deactivate'));
+require_once plugin_dir_path( __FILE__ ) . 'inc/mcp-plugin-deactivate.php';
+register_deactivation_hook( __FILE__, array('McpPluginDeactivate', 'deactivate'));
 
 function add_featured_image_to_rest() {
     // Add featured image data to the REST API for posts
