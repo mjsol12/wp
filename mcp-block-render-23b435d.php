@@ -18,6 +18,9 @@ define( 'MCP_PATH', plugin_dir_path(__FILE__) );
 class McpddPlugin 
 {
 	
+
+	// custom user profile
+	private $custom_user_fields = array("phone", "address", "bio");
 	private $custom_fields = array("location","address","place");
 
 	function __construct () {
@@ -25,9 +28,19 @@ class McpddPlugin
 	}
 
 	function register() {
+
 		add_action('admin_enqueue_scripts', array($this, 'enqueue'));
 
 		add_action('admin_menu', array($this, 'add_admin_pages'));
+
+		
+        // Hooks for adding custom fields to user profiles
+        add_action('show_user_profile', array($this, 'add_custom_user_profile_fields'));
+        add_action('edit_user_profile', array($this, 'add_custom_user_profile_fields'));
+
+        // Hooks for saving custom fields
+        add_action('personal_options_update', array($this, 'save_custom_user_profile_fields'));
+        add_action('edit_user_profile_update', array($this, 'save_custom_user_profile_fields'));
 	}
 
 	function add_admin_pages(){
@@ -89,8 +102,44 @@ class McpddPlugin
         }
 	}
 
-	// custom user profile
+    // Method to display custom fields in user profile
+    public function add_custom_user_profile_fields($user) {
+        // Output fields for each custom field
+        echo '<h3>' . esc_html__('Additional Information', 'textdomain') . '</h3>';
+        echo '<table class="form-table">';
 
+        foreach ($this->custom_user_fields as $field) {
+            $value = get_user_meta($user->ID, '_my_custom_user_meta_' . $field, true);
+            echo '<tr>';
+            echo '<th><label for="my_custom_field_' . esc_attr($field) . '">' . esc_html(ucfirst($field)) . '</label></th>';
+            echo '<td>';
+            echo '<input type="text" id="my_custom_field_' . esc_attr($field) . '" name="my_custom_field[' . esc_attr($field) . ']" value="' . esc_attr($value) . '" class="regular-text" />';
+            echo '</td>';
+            echo '</tr>';
+        }
+
+        echo '</table>';
+    }
+
+    // Method to save custom fields
+    public function save_custom_user_profile_fields($user_id) {
+        // Check user permissions
+        if (!current_user_can('edit_user', $user_id)) {
+            return;
+        }
+
+        // Loop through each custom field and save the value
+        foreach ($this->custom_user_fields as $field) {
+            if (isset($_POST['my_custom_field'][$field])) {
+                // Sanitize and save the input
+                $sanitized_value = sanitize_text_field($_POST['my_custom_field'][$field]);
+                update_user_meta($user_id, '_my_custom_user_meta_' . $field, $sanitized_value);
+            } else {
+                // If the field is not set in the request, delete the meta key
+                delete_user_meta($user_id, '_my_custom_user_meta_' . $field);
+            }
+        }
+    }
 
 
 	protected function create_post_type() {
@@ -145,10 +194,10 @@ if(class_exists( 'McpddPlugin' )) {
 	$mcpaddPlugin->register();
 }
 
-require_once plugin_dir_path( __FILE__ ) . 'inc/mcp-plugin-activate.php';
+require_once MCP_PATH . 'inc/mcp-plugin-activate.php';
 register_activation_hook( __FILE__, array('McpPluginActivate', 'activate'));
 
-require_once plugin_dir_path( __FILE__ ) . 'inc/mcp-plugin-deactivate.php';
+require_once MCP_PATH . 'inc/mcp-plugin-deactivate.php';
 register_deactivation_hook( __FILE__, array('McpPluginDeactivate', 'deactivate'));
 
 function add_featured_image_to_rest() {
