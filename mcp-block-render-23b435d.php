@@ -17,6 +17,9 @@ define( 'MCP_PATH', plugin_dir_path(__FILE__) );
 
 class McpddPlugin 
 {
+	
+	private $custom_fields = array("location","address","place");
+
 	function __construct () {
 		$this->create_post_type();
 	}
@@ -36,8 +39,62 @@ class McpddPlugin
 
 	}
 
+	function custom_meta_box(){
+		//require template
+		add_meta_box(
+			'my_custom_meta_box_id', // Unique ID
+			'MCP Meta Box', // Box title
+			array( $this, 'meta_box_callback'), // Callback function
+			'mcp' // Post type
+		);
+	}
+
+	function meta_box_callback($post) {
+		// Add a nonce field for security
+		wp_nonce_field('mcp_meta_box_nonce_action', 'mcp_meta_box_nonce'); 
+	
+		foreach ($this->custom_fields as $field) {
+			// Retrieve existing value from the database
+			$value = get_post_meta($post->ID, '_my_custom_meta_key_' . $field, true);
+			
+			// Output the field
+			echo '<div style="margin: 25px 25px">';
+			echo '<label for="my_custom_field_' . esc_attr($field) . '">' . esc_html($field) . ': </label>';
+			echo '<input type="text" id="my_custom_field_' . esc_attr($field) . '" name="my_custom_field[' . esc_attr($field) . ']" value="' . esc_attr($value) . '" />';
+			echo '</div>';
+		}
+	}
+	function meta_box_save($post_id) {
+		// // Check if our nonce is set and verify it
+		// if (!isset($_POST['mcp_meta_box_nonce']) || !wp_verify_nonce($_POST['mcp_custom_meta_box_nonce'], 'mcp_meta_box_nonce_action')) {
+		// 	return;
+		// }
+	
+		// // Check if the user has permission to save the data
+		// if (!current_user_can('edit_post', $post_id)) {
+		// 	return;
+		// }
+	
+		// Save or update the metadata
+		// Loop through each custom field and save the value
+        foreach ($this->custom_fields as $field) {
+            // Check if the custom field value exists in the POST request
+            if (isset($_POST['my_custom_field'][$field])) {
+				// print_r(isset($_POST['my_custom_field'][$field]));
+                // Sanitize the input before saving
+                $sanitized_value = sanitize_text_field($_POST['my_custom_field'][$field]);
+                // Update or add the meta value in the database
+                update_post_meta($post_id, '_my_custom_meta_key_' . $field, $sanitized_value);
+            }
+        }
+	}
+
+
+
 	protected function create_post_type() {
 		add_action( 'init', array( $this, 'custom_post_type' ) );
+		add_action('add_meta_boxes', array( $this, 'custom_meta_box' )  );
+		add_action('save_post', array( $this, 'meta_box_save' )  );
 	}
 
 	// Function to register the custom post type
