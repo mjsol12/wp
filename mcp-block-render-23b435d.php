@@ -65,15 +65,15 @@ class McpddPlugin
 		}
 	}
 	function meta_box_save($post_id) {
-		// // Check if our nonce is set and verify it
-		// if (!isset($_POST['mcp_meta_box_nonce']) || !wp_verify_nonce($_POST['mcp_custom_meta_box_nonce'], 'mcp_meta_box_nonce_action')) {
-		// 	return;
-		// }
+		// Check if our nonce is set and verify it
+		if (!isset($_POST['mcp_meta_box_nonce']) || !wp_verify_nonce($_POST['mcp_meta_box_nonce'], 'mcp_meta_box_nonce_action')) {
+			return;
+		}
 	
-		// // Check if the user has permission to save the data
-		// if (!current_user_can('edit_post', $post_id)) {
-		// 	return;
-		// }
+		// Check if the user has permission to save the data
+		if (!current_user_can('edit_post', $post_id)) {
+			return;
+		}
 	
 		// Save or update the metadata
 		// Loop through each custom field and save the value
@@ -88,6 +88,8 @@ class McpddPlugin
             }
         }
 	}
+
+	// custom user profile
 
 
 
