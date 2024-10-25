@@ -4,7 +4,7 @@
   "name": "block-development/mcp-block-render-23b435d",
   "version": "0.1.0",
   "title": "MCP LIST",
-  "category": "common",
+  "category": "widgets",
   "icon": "welcome-write-blog",
   "description": "The block will display all listed MCP posts",
   "example": {},
