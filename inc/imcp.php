@@ -75,6 +75,30 @@ class ImcpPluginRegister
 				'sanitize_callback' => 'wp_strip_all_tags'
 			)
 		);
+		
+		register_meta( 
+			"post",
+			 "imcp_featured_image_url", 
+			 array(
+				'object_subtype'    => 'imcp' , 
+				'show_in_rest' 	    => true,
+				'single'            => true,
+				'type'              => 'string',
+				'sanitize_callback' => 'esc_url_raw'
+			)
+		);
+		
+		register_meta( 
+			"post",
+			 "imcp_featured_image_alt", 
+			 array(
+				'object_subtype'    => 'imcp' , 
+				'show_in_rest' 	    => true,
+				'single'            => true,
+				'type'              => 'string',
+				'sanitize_callback' => 'wp_strip_all_tags'
+			)
+		);
 	}
 
     function custom_post_type(){	
@@ -104,7 +128,7 @@ class ImcpPluginRegister
 			'show_in_admin_bar'  => true, // Makes the custom post type available in the top admin bar when adding new items.
 			'menu_position'      => 5, // Position of the MCP tab in the menu
 			'menu_icon'          => 'dashicons-sticky', 
-			'show_in_rest'       => true,  // Enable REST API for Gutenberg editor
+			'show_in_rest'       => false,  // Enable REST API for Gutenberg editor
 		);
 
 		register_post_type('imcp', $args );
